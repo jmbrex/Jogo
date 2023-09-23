@@ -10,7 +10,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 public class main {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Personagens p1 = new Personagens();
         p1.criarPersonagem("mago","Jmbrex",'M');
         Inimigos p2 = new Inimigos("nome", "a", 100, 0, 0, 0, 0, 11);
@@ -25,5 +25,5 @@ public class main {
         DbSQL sql = new DbSQL();
         User user = new User(0, "joao", "jmbrex", "jmbrex@gmail.com", "123", "M");
         sql.sqlDbUserInsert(user);
-    }
+    }*/
 }
