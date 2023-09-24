@@ -1,9 +1,8 @@
-ads\jogorpg\DataBase\DbSQL.class
 ads\jogorpg\User\User.class
 ads\jogorpg\DataBase\DbMongoDB.class
 ads\jogorpg\main.class
-ads\jogorpg\Inimigos.class
-ads\jogorpg\Personagens.class
-ads\jogorpg\Atributos.class
+ads\jogorpg\Player\Atributos.class
+ads\jogorpg\Player\Batalha.class
 ads\jogorpg\DataBase\Doc.class
-ads\jogorpg\Batalha.class
+ads\jogorpg\Player\Inimigos.class
+ads\jogorpg\Player\Personagens.class
