@@ -4,6 +4,9 @@
  */
 package ads.jogorpg.Telas;
 
+import ads.jogorpg.DataBase.DbMongoDB;
+import org.bson.Document;
+
 /**
  *
  * @author João Marcelo
@@ -15,6 +18,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        DbMongoDB mongo = new DbMongoDB();
+        Document doc = 
+        mongo.MongoGetDBcollection("Jogo", "LogedUser");
+        Nome.setText((String)doc.get("NickName"));
+        
+        
+        
     }
 
     /**
@@ -26,18 +36,52 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        BT_CriarPersonagem = new javax.swing.JButton();
+        WellCome = new javax.swing.JLabel();
+        Nome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/FundoMenu.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        BT_CriarPersonagem.setBackground(new java.awt.Color(204, 204, 204));
+        BT_CriarPersonagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        BT_CriarPersonagem.setForeground(new java.awt.Color(0, 0, 0));
+        BT_CriarPersonagem.setText("Criar Personagem");
+        BT_CriarPersonagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_CriarPersonagemActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BT_CriarPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 170, 200, 40));
+
+        WellCome.setFont(new java.awt.Font("Arial", 2, 30)); // NOI18N
+        WellCome.setForeground(new java.awt.Color(255, 255, 255));
+        WellCome.setText("Bem Vind@!");
+        getContentPane().add(WellCome, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 190, 50));
+
+        Nome.setFont(new java.awt.Font("Arial", 2, 24)); // NOI18N
+        Nome.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 70, 250, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Moldura_Inicial1.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 580, 700));
+
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/FundoMenu.png"))); // NOI18N
+        getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BT_CriarPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_CriarPersonagemActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        CriarPersonagem T1 = new CriarPersonagem();
+        T1.setVisible(true);
+    }//GEN-LAST:event_BT_CriarPersonagemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -75,6 +119,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton BT_CriarPersonagem;
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel Nome;
+    private javax.swing.JLabel WellCome;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

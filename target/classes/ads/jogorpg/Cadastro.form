@@ -122,7 +122,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="Masculo"/>
+            <StringItem index="0" value="Masculino"/>
             <StringItem index="1" value="Feminino"/>
             <StringItem index="2" value="N/a"/>
           </StringArray>

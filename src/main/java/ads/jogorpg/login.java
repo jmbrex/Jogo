@@ -4,7 +4,9 @@
  */
 package ads.jogorpg;
 
+import ads.jogorpg.DataBase.DbMongoDB;
 import ads.jogorpg.DataBase.DbSQL;
+import ads.jogorpg.DataBase.Doc;
 import ads.jogorpg.Telas.TelaPrincipal;
 import ads.jogorpg.User.User;
 import javax.swing.JOptionPane;
@@ -94,8 +96,14 @@ public class login extends javax.swing.JFrame {
     private void BT_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_LoginActionPerformed
         // TODO add your handling code here:
         DbSQL SQL = new DbSQL();
+        //Pegando user no SQL
         User p1 = SQL.sqlUserSelectNickName(TxtUser.getText());
-        System.out.println(p1.getPassWord());
+        //Conectando com Mongo -- Salvar usuario Logado
+        DbMongoDB mongo = new DbMongoDB();
+        Doc doc = new Doc();
+        mongo.MongoDropCollection("Jogo", "LogedUser");
+        mongo.MongoInsertDB("Jogo", "LogedUser", doc.DocUser(p1));
+        
         if(TXTPassWord.getText().equals(p1.getPassWord())){
             this.dispose();
             TelaPrincipal T1 = new TelaPrincipal();
@@ -103,6 +111,8 @@ public class login extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Usuario ou senha Incorretos");
         }
+        
+        
     }//GEN-LAST:event_BT_LoginActionPerformed
 
     /**

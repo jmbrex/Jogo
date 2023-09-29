@@ -46,18 +46,52 @@ public class DbMongoDB {
         System.out.println("Documento teve sucesso no delete...");
     }
     
-    public Document MongoGetDB(String dataBase, String DataBaseCollection, String  FilterAtributo, String FilterAtributoValue){
+    public Document MongoGetDB(String dataBase, String DataBaseCollection,String VarSearchType, String  FilterAtributo, String FilterAtributoValue){
         System.out.println("getValues");
         MongoClient mongo = new MongoClient("localhost", 27017);
         MongoDatabase db = mongo.getDatabase(dataBase);
         MongoCollection<Document> docs = db.getCollection(DataBaseCollection);
         for (Document doc : docs.find()) {
-            if(doc.get(FilterAtributo).equals(FilterAtributoValue)){
-                return doc;
+            if(VarSearchType.equals("String")){
+                if(doc.get(FilterAtributo).equals(FilterAtributoValue)){
+                    return doc;
+                }else{
+                    System.out.println("Não encontrado");
+                    return null;
+                }
             }else{
-                System.out.println("Não encontrado");
-                return null;
+                if(doc.get(FilterAtributo).equals(Integer.parseInt(FilterAtributoValue))){
+                    return doc;
+                }else{
+                    System.out.println("Não encontrado");
+                    return null;
+                }
             }
+            
+        }
+        return null;
+
+    }
+    
+    public void MongoDropCollection(String dataBase ,String DataBaseCollection){
+        System.out.println("deleteValues");
+        MongoClient mongo = new MongoClient("localhost", 27017);
+
+        MongoDatabase db = mongo.getDatabase(dataBase);
+        MongoCollection<Document> docs = db.getCollection(DataBaseCollection);
+
+        docs.drop();
+        System.out.println("Documento teve sucesso no delete...");
+    }
+    
+    public Document MongoGetDBcollection(String dataBase, String DataBaseCollection){
+        System.out.println("getValues");
+        MongoClient mongo = new MongoClient("localhost", 27017);
+        MongoDatabase db = mongo.getDatabase(dataBase);
+        MongoCollection<Document> docs = db.getCollection(DataBaseCollection);
+        for (Document doc : docs.find()) {
+            return doc;
+            
         }
         return null;
 
