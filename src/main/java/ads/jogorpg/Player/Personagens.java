@@ -2,11 +2,11 @@ package ads.jogorpg.Player;
 public class Personagens {
    private String Name,Classe;
    private int vida, vidaMax, stregth, Magic, Stamina, StaminaMax, Level, Defense, Critical, InimigosDerrotados, Dungeons, IDPlayer;
-   char Sex;
+   private String Sex;
 
     public Personagens() {}
 
-    public Personagens(String Name, String Classe,char Sex, int vida, int vidaMax, int stregth, int Magic, int Stamina, int StaminaMax, int Level, int Defense, int Critical, int InimigosDerrotados, int Dungeons, int IDPlayer) {
+    public Personagens(String Name, String Classe,String Sex, int vida, int vidaMax, int stregth, int Magic, int Stamina, int StaminaMax, int Level, int Defense, int Critical, int InimigosDerrotados, int Dungeons, int IDPlayer) {
         this.Name = Name;
         this.Classe = Classe;
         this.vida = vida;
@@ -26,12 +26,13 @@ public class Personagens {
 
     
     
-    public void criarPersonagem(String Classe, String Name, char Sex){
+    public void criarPersonagem(String Classe, String Name, String Sex, int ID){
         this.setClasse(Classe);
         this.setName(Name);
         this.setSex(Sex);
         Atributos at = new Atributos();
         at.Atributos(this);
+        this.setIDPlayer(ID);
     }
 
     public int getIDPlayer() {
@@ -130,11 +131,11 @@ public class Personagens {
         this.Defense = Defense;
     }
 
-    public char getSex() {
+    public String getSex() {
         return Sex;
     }
 
-    public void setSex(char Sex) {
+    public void setSex(String Sex) {
         this.Sex = Sex;
     }
 

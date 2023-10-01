@@ -3,7 +3,7 @@ public class Atributos {
     public void Atributos(Personagens p1){
         
         switch (p1.getClasse()) {
-            case "guerreiro":
+            case "Guerreiro":
                 
                 p1.setVidaMax(200);
                 p1.setStaminaMax(200);
@@ -16,7 +16,7 @@ public class Atributos {
                 p1.setDungeons(0);
                 break;
                 
-            case "mago":
+            case "Mago":
                 p1.setVidaMax(200);
                 p1.setStaminaMax(200);
                 p1.setLevel(0);
@@ -28,13 +28,13 @@ public class Atributos {
                 p1.setDungeons(0);
                 break;
                
-            case "arqueiro":
+            case "Arqueiro":
                 p1.setVidaMax(200);
                 p1.setStaminaMax(200);
                 p1.setLevel(0);
                 p1.setStregth(15);
                 p1.setMagic(20);
-                p1.setCritical(101);
+                p1.setCritical(25);
                 p1.setDefense(15);
                 p1.setInimigosDerrotados(0);
                 p1.setDungeons(0);

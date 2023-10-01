@@ -81,5 +81,27 @@ public class DbSQL {
     
     public void sqlDbPersonagemInsert(Personagens personagem){
         Connection connection = connectionMySql();
+        
+        String StringSQL = "insert into Personagem(ID,IDUser, Nome, Class, Nivel, VidaMax, StaminaMax, Strength, Magic, Defesa, InimigosDerrotados, Dungeons, Critical, Sex)values(null,?,?,?,?,?,?,?,?,?,?,?,?,? )";
+        PreparedStatement preparedStmt;
+        try{
+            preparedStmt = connection.prepareStatement(StringSQL);
+            preparedStmt.setInt(1, personagem.getIDPlayer());//IDuser
+            preparedStmt.setString(2, personagem.getName());//Nome
+            preparedStmt.setString(3, personagem.getClasse());//Class
+            preparedStmt.setInt(4, personagem.getLevel());//Nivel
+            preparedStmt.setInt(5, personagem.getVidaMax());//VidaMax
+            preparedStmt.setInt(6, personagem.getStaminaMax());//StaminaMax
+            preparedStmt.setInt(7, personagem.getStregth());//Strength
+            preparedStmt.setInt(8, personagem.getMagic());//Magic
+            preparedStmt.setInt(9, personagem.getDefense());//Defesa
+            preparedStmt.setInt(10, personagem.getInimigosDerrotados());//Inimigos
+            preparedStmt.setInt(11, personagem.getDungeons());//Dungeons
+            preparedStmt.setInt(12, personagem.getCritical());//Critical
+            preparedStmt.setString(13, personagem.getSex());//Sex
+            preparedStmt.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();}
+        closeConnectionMySql(connection);
     }
 }

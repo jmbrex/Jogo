@@ -15,7 +15,7 @@ import com.mongodb.client.model.Updates;
 import org.bson.Document;
 
 public class Doc {
-    public Document DocUser(User U1) {
+    public Document UserToDoc(User U1) {
         Document doc = new Document();
         
         doc.append("_id", U1.getID());
@@ -27,6 +27,19 @@ public class Doc {
         //doc.append("Personagens", U1.getUserPersonagens()+";");
         
         return doc;
+    }
+    
+    public User DocToUser(Document Doc){
+        User p1 = new User();
+        
+        p1.setID((int) Doc.get("_id"));
+        p1.setUserName((String) Doc.get("UserName"));
+        p1.setNickName((String) Doc.get("NickName"));
+        p1.setEmail((String) Doc.get("Email"));
+        p1.setPassWord((String) Doc.get("PassWord"));
+        p1.setSex((String) Doc.get("Sex"));
+        
+        return p1;
     }
     
     public Document DocPersonagem(Personagens P1){

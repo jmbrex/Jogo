@@ -12,7 +12,7 @@ import org.bson.Document;
 public class main {
     public static void main(String[] args) {
         Personagens p1 = new Personagens();
-        p1.criarPersonagem("mago","Jmbrex",'M');
+        p1.criarPersonagem("mago","Jmbrex","", 0);
         Inimigos p2 = new Inimigos("nome", "a", 100, 0, 0, 0, 0, 11);
         Batalha B = new Batalha();
         System.out.println(p2.getVida());
@@ -21,9 +21,10 @@ public class main {
         
         DbMongoDB mongo = new DbMongoDB();
         Doc doc = new Doc();
+        User u = new User();
+        u = doc.DocToUser(mongo.MongoGetDBcollection("Jogo", "LogedUser"));
+        System.out.println(u.getNickName());
         
-        DbSQL sql = new DbSQL();
-        User user = new User(0, "joao", "jmbrex", "jmbrex@gmail.com", "123", "M");
         //sql.sqlDbUserInsert(user);
         
             

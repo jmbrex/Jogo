@@ -101,10 +101,11 @@ public class login extends javax.swing.JFrame {
         //Conectando com Mongo -- Salvar usuario Logado
         DbMongoDB mongo = new DbMongoDB();
         Doc doc = new Doc();
-        mongo.MongoDropCollection("Jogo", "LogedUser");
-        mongo.MongoInsertDB("Jogo", "LogedUser", doc.DocUser(p1));
+        
         
         if(TXTPassWord.getText().equals(p1.getPassWord())){
+            mongo.MongoDropCollection("Jogo", "LogedUser");
+            mongo.MongoInsertDB("Jogo", "LogedUser", doc.UserToDoc(p1));
             this.dispose();
             TelaPrincipal T1 = new TelaPrincipal();
             T1.setVisible(true);
