@@ -81,7 +81,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         Combo_Sex.setBackground(new java.awt.Color(204, 204, 204));
         Combo_Sex.setForeground(new java.awt.Color(0, 0, 0));
-        Combo_Sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "N/a" }));
+        Combo_Sex.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Feminino", "Não Binario" }));
         getContentPane().add(Combo_Sex, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 460, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(204, 204, 204));

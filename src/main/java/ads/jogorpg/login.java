@@ -105,7 +105,8 @@ public class login extends javax.swing.JFrame {
         
         if(TXTPassWord.getText().equals(p1.getPassWord())){
             mongo.MongoDropCollection("Jogo", "LogedUser");
-            mongo.MongoInsertDB("Jogo", "LogedUser", doc.UserToDoc(p1));
+            mongo.MongoDropCollection("Jogo", "LoggedUser");
+            mongo.MongoInsertDB("Jogo", "LoggedUser", doc.UserToDoc(p1));
             this.dispose();
             TelaPrincipal T1 = new TelaPrincipal();
             T1.setVisible(true);

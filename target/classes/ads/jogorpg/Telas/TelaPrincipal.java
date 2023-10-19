@@ -20,7 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         DbMongoDB mongo = new DbMongoDB();
         Document doc = 
-        mongo.MongoGetDBcollection("Jogo", "LogedUser");
+        mongo.MongoGetDBcollection("Jogo", "LoggedUser");
         Nome.setText((String)doc.get("NickName"));
         
         

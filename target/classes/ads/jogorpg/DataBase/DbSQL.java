@@ -2,6 +2,8 @@ package ads.jogorpg.DataBase;
 import ads.jogorpg.Player.Personagens;
 import ads.jogorpg.User.User;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 public class DbSQL {
     private static Connection conexao_MySql = null;
     private static String localBD = "localhost";
@@ -103,5 +105,36 @@ public class DbSQL {
         }catch(SQLException e){
             e.printStackTrace();}
         closeConnectionMySql(connection);
+    }
+    
+    public List<Personagens> sqlDbPersonagensSelect(User user){
+    
+        List<Personagens> ListPersonagens = new ArrayList<>();
+        
+        Connection connection = connectionMySql();
+        String StringSQL = "select* from personagem where IDuser = ?";
+        PreparedStatement preparedStmt;
+        
+        try{
+            preparedStmt = connection.prepareStatement(StringSQL);
+            preparedStmt.setInt(1,user.getID());
+            ResultSet result = preparedStmt.executeQuery();
+            
+            while(result.next()){
+                Personagens p1 = new Personagens();
+                p1.setID(result.getInt("ID"));
+                p1.setIDPlayer(result.getInt("IDUser"));
+                p1.setName(result.getString("Nome"));
+                p1.setClasse(result.getString("Class"));
+                p1.setLevel(result.getInt("Nivel"));
+                ListPersonagens.add(p1);
+            }
+        }catch  (SQLException e){
+            e.printStackTrace();
+        }
+        closeConnectionMySql(connection);
+        
+        return ListPersonagens;
+    
     }
 }

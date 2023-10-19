@@ -68,7 +68,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
         Nome.setForeground(new java.awt.Color(0, 0, 0));
         Nome.setToolTipText("Teste");
         Nome.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        getContentPane().add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 200, 40));
+        getContentPane().add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 200, 40));
 
         Classe.setBackground(new java.awt.Color(204, 204, 204));
         Classe.setForeground(new java.awt.Color(0, 0, 0));
@@ -78,7 +78,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
                 ClasseActionPerformed(evt);
             }
         });
-        getContentPane().add(Classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 150, 30));
+        getContentPane().add(Classe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 260, 150, 30));
 
         Fem.setForeground(new java.awt.Color(255, 255, 255));
         Fem.setText("Feminino");
@@ -87,7 +87,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
                 FemActionPerformed(evt);
             }
         });
-        getContentPane().add(Fem, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 330, 150, 30));
+        getContentPane().add(Fem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 330, 150, 30));
 
         Masc.setForeground(new java.awt.Color(255, 255, 255));
         Masc.setText("Masculino");
@@ -96,13 +96,18 @@ public class CriarPersonagem extends javax.swing.JFrame {
                 MascActionPerformed(evt);
             }
         });
-        getContentPane().add(Masc, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 150, 30));
+        getContentPane().add(Masc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 300, 150, 30));
 
         Menu.setBackground(new java.awt.Color(204, 204, 204));
         Menu.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Menu.setForeground(new java.awt.Color(0, 0, 0));
         Menu.setText("Menu");
-        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 120, 40));
+        Menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 470, 120, 40));
 
         Criar.setBackground(new java.awt.Color(204, 204, 204));
         Criar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -113,89 +118,89 @@ public class CriarPersonagem extends javax.swing.JFrame {
                 CriarActionPerformed(evt);
             }
         });
-        getContentPane().add(Criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 120, 40));
+        getContentPane().add(Criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 470, 120, 40));
 
         Vida.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Vida.setForeground(new java.awt.Color(255, 255, 255));
         Vida.setText("Vida");
-        getContentPane().add(Vida, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 220, -1, -1));
+        getContentPane().add(Vida, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 220, 120, -1));
 
         Critico.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Critico.setForeground(new java.awt.Color(255, 255, 255));
         Critico.setText("Critico");
-        getContentPane().add(Critico, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 420, -1, -1));
+        getContentPane().add(Critico, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 420, 120, -1));
 
         Defesa.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Defesa.setForeground(new java.awt.Color(255, 255, 255));
         Defesa.setText("Defesa");
-        getContentPane().add(Defesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 380, -1, -1));
+        getContentPane().add(Defesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 380, 120, -1));
 
         Magia.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Magia.setForeground(new java.awt.Color(255, 255, 255));
         Magia.setText("Magia");
-        getContentPane().add(Magia, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 340, -1, -1));
+        getContentPane().add(Magia, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 340, 130, -1));
 
         Forca.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Forca.setForeground(new java.awt.Color(255, 255, 255));
         Forca.setText("Força");
-        getContentPane().add(Forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 300, -1, -1));
+        getContentPane().add(Forca, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 300, 120, -1));
 
         Stamina.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         Stamina.setForeground(new java.awt.Color(255, 255, 255));
         Stamina.setText("Stamina");
-        getContentPane().add(Stamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 260, -1, -1));
+        getContentPane().add(Stamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 260, 120, -1));
 
         LabelDefesa.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         LabelDefesa.setForeground(new java.awt.Color(255, 255, 255));
         LabelDefesa.setText("Defesa:");
-        getContentPane().add(LabelDefesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, -1, -1));
+        getContentPane().add(LabelDefesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, -1, -1));
 
         LabelCritico.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         LabelCritico.setForeground(new java.awt.Color(255, 255, 255));
         LabelCritico.setText("Critico:");
-        getContentPane().add(LabelCritico, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, -1, -1));
+        getContentPane().add(LabelCritico, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, -1, -1));
 
         labelForça.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         labelForça.setForeground(new java.awt.Color(255, 255, 255));
         labelForça.setText("Força:");
-        getContentPane().add(labelForça, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 300, -1, -1));
+        getContentPane().add(labelForça, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 300, -1, -1));
 
         LabelMagia.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         LabelMagia.setForeground(new java.awt.Color(255, 255, 255));
         LabelMagia.setText("Magia:");
-        getContentPane().add(LabelMagia, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, -1, -1));
+        getContentPane().add(LabelMagia, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 340, -1, -1));
 
         LabelStamina.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         LabelStamina.setForeground(new java.awt.Color(255, 255, 255));
         LabelStamina.setText("Stamina:");
-        getContentPane().add(LabelStamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, -1, -1));
+        getContentPane().add(LabelStamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 260, -1, -1));
 
         LabelVida.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         LabelVida.setForeground(new java.awt.Color(255, 255, 255));
         LabelVida.setText("Vida:");
-        getContentPane().add(LabelVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 220, -1, -1));
+        getContentPane().add(LabelVida, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 220, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Genero:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Classe:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 260, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome:");
         jLabel2.setToolTipText("");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
         Info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/moldura_maior.png"))); // NOI18N
-        getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 400, 460));
+        getContentPane().add(Info, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 400, 460));
 
         Atributos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/moldura_maior.png"))); // NOI18N
-        getContentPane().add(Atributos, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 100, 390, 460));
+        getContentPane().add(Atributos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 100, 390, 460));
 
         Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/FundoMenu.png"))); // NOI18N
         getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -219,7 +224,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
         Personagens Tela = new Personagens();
         Tela.criarPersonagem((String) Classe.getSelectedItem(), "", "", 0);
         Vida.setText( String.valueOf(Tela.getVidaMax()));
-        Stamina.setText(String.valueOf(Tela.getStamina()));
+        Stamina.setText(String.valueOf(Tela.getStaminaMax()));
         Forca.setText(String.valueOf(Tela.getStregth()));
         Magia.setText(String.valueOf(Tela.getMagic()));
         Defesa.setText(String.valueOf(Tela.getDefense()));
@@ -248,7 +253,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Escolha uma classe");
         }else if(!Sex.equals("0")){
             
-            user = doc.DocToUser(mongo.MongoGetDBcollection("Jogo", "LogedUser"));
+            user = doc.DocToUser(mongo.MongoGetDBcollection("Jogo", "LoggedUser"));
             P1.criarPersonagem((String) Classe.getSelectedItem(), Nome.getText(), Sex, user.getID());
             Document docPersonagem = doc.DocPersonagem(P1);
             sql.sqlDbPersonagemInsert(P1);
@@ -261,6 +266,13 @@ public class CriarPersonagem extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_CriarActionPerformed
+
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        TelaPrincipal p1 = new TelaPrincipal();
+        p1.setVisible(true);
+    }//GEN-LAST:event_MenuActionPerformed
 
     /**
      * @param args the command line arguments

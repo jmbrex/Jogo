@@ -124,7 +124,7 @@
           <StringArray count="3">
             <StringItem index="0" value="Masculino"/>
             <StringItem index="1" value="Feminino"/>
-            <StringItem index="2" value="N/a"/>
+            <StringItem index="2" value="N&#xe3;o Binario"/>
           </StringArray>
         </Property>
       </Properties>
