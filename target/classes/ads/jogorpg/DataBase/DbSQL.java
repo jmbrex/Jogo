@@ -127,6 +127,15 @@ public class DbSQL {
                 p1.setName(result.getString("Nome"));
                 p1.setClasse(result.getString("Class"));
                 p1.setLevel(result.getInt("Nivel"));
+                p1.setVida(result.getInt("VidaMax"));
+                p1.setStaminaMax(result.getInt("StaminaMax"));
+                p1.setStregth(result.getInt("Strength"));
+                p1.setMagic(result.getInt("Magic"));
+                p1.setDefense(result.getInt("Defesa"));
+                p1.setInimigosDerrotados(result.getInt("InimigosDerrotados"));
+                p1.setDungeons(result.getInt("Dungeons"));
+                p1.setCritical(result.getInt("Critical"));
+                p1.setSex(result.getString("Sex"));
                 ListPersonagens.add(p1);
             }
         }catch  (SQLException e){
