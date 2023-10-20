@@ -81,6 +81,7 @@ public class DbSQL {
         return p1;
     }
     
+    //Salva o  personagem criado no Mysql Vinculando ele ao Usuario logado
     public void sqlDbPersonagemInsert(Personagens personagem){
         Connection connection = connectionMySql();
         
@@ -107,6 +108,9 @@ public class DbSQL {
         closeConnectionMySql(connection);
     }
     
+    
+    //Função que retorna uma List de Personagens
+    //Faz busca no MySQL com  base no ID do usuario, buscando assim todos os personagens relacionados com o ID do usuario
     public List<Personagens> sqlDbPersonagensSelect(User user){
     
         List<Personagens> ListPersonagens = new ArrayList<>();

@@ -5,6 +5,11 @@
 package ads.jogorpg.Telas;
 
 import ads.jogorpg.DataBase.DbMongoDB;
+import ads.jogorpg.DataBase.DbSQL;
+import ads.jogorpg.DataBase.Doc;
+import ads.jogorpg.Player.Personagens;
+import ads.jogorpg.User.User;
+import java.util.List;
 import org.bson.Document;
 
 /**
@@ -24,6 +29,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Nome.setText((String)doc.get("NickName"));
         
         
+        Doc D = new Doc();
+        User U1 = D.DocToUser(doc);
+        DbSQL SQL = new DbSQL();
+        List <Personagens> ListaPersonagens = SQL.sqlDbPersonagensSelect(U1);
+        
+        for (int i = 0; i < ListaPersonagens.size(); i++) {
+            SelectPersonagem.addItem(ListaPersonagens.get(i).getName() +" -- "+ ListaPersonagens.get(i).getClasse());
+        }
+        
+        
         
     }
 
@@ -36,6 +51,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        SelectPersonagem = new javax.swing.JComboBox<>();
         BT_CriarPersonagem = new javax.swing.JButton();
         WellCome = new javax.swing.JLabel();
         Nome = new javax.swing.JLabel();
@@ -45,6 +61,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        getContentPane().add(SelectPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 240, 30));
 
         BT_CriarPersonagem.setBackground(new java.awt.Color(204, 204, 204));
         BT_CriarPersonagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -122,6 +140,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton BT_CriarPersonagem;
     private javax.swing.JLabel Fundo;
     private javax.swing.JLabel Nome;
+    private javax.swing.JComboBox<String> SelectPersonagem;
     private javax.swing.JLabel WellCome;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
