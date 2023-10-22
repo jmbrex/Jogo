@@ -29,17 +29,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Nome.setText((String)doc.get("NickName"));
         
         
-        Doc D = new Doc();
-        User U1 = D.DocToUser(doc);
-        DbSQL SQL = new DbSQL();
-        List <Personagens> ListaPersonagens = SQL.sqlDbPersonagensSelect(U1);
-        
-        for (int i = 0; i < ListaPersonagens.size(); i++) {
-            SelectPersonagem.addItem(ListaPersonagens.get(i).getName() +" -- "+ ListaPersonagens.get(i).getClasse());
-        }
-        
-        
-        
     }
 
     /**
@@ -51,7 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SelectPersonagem = new javax.swing.JComboBox<>();
+        BT_Joar = new javax.swing.JButton();
         BT_CriarPersonagem = new javax.swing.JButton();
         WellCome = new javax.swing.JLabel();
         Nome = new javax.swing.JLabel();
@@ -62,7 +51,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(SelectPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 240, 30));
+        BT_Joar.setBackground(new java.awt.Color(204, 204, 204));
+        BT_Joar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        BT_Joar.setForeground(new java.awt.Color(0, 0, 0));
+        BT_Joar.setText("Jogar");
+        BT_Joar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BT_JoarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BT_Joar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 230, 200, 40));
 
         BT_CriarPersonagem.setBackground(new java.awt.Color(204, 204, 204));
         BT_CriarPersonagem.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -101,6 +99,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         T1.setVisible(true);
     }//GEN-LAST:event_BT_CriarPersonagemActionPerformed
 
+    private void BT_JoarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_JoarActionPerformed
+        // TODO add your handling code here:
+        InicioDeJogo jogoInit = new InicioDeJogo();
+        jogoInit.setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_BT_JoarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -138,9 +144,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BT_CriarPersonagem;
+    private javax.swing.JButton BT_Joar;
     private javax.swing.JLabel Fundo;
     private javax.swing.JLabel Nome;
-    private javax.swing.JComboBox<String> SelectPersonagem;
     private javax.swing.JLabel WellCome;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

@@ -1,7 +1,7 @@
 package ads.jogorpg;
 import ads.jogorpg.Player.Inimigos;
 import ads.jogorpg.Player.Personagens;
-import ads.jogorpg.Player.Batalha;
+
 import ads.jogorpg.DataBase.DbMongoDB;
 import ads.jogorpg.DataBase.DbSQL;
 import ads.jogorpg.DataBase.Doc;

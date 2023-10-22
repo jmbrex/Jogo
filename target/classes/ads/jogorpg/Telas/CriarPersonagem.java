@@ -247,6 +247,7 @@ public class CriarPersonagem extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Informe um gênero para seu personagem");
         }
+        
         if(Nome.getText().equals(" ") || Nome.getText().isEmpty() || Nome.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Defina um nome para o Personagem");
         }else if(Classe.getSelectedItem().equals(" ")){

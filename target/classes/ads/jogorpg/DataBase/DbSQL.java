@@ -131,7 +131,7 @@ public class DbSQL {
                 p1.setName(result.getString("Nome"));
                 p1.setClasse(result.getString("Class"));
                 p1.setLevel(result.getInt("Nivel"));
-                p1.setVida(result.getInt("VidaMax"));
+                p1.setVidaMax(result.getInt("VidaMax"));
                 p1.setStaminaMax(result.getInt("StaminaMax"));
                 p1.setStregth(result.getInt("Strength"));
                 p1.setMagic(result.getInt("Magic"));
