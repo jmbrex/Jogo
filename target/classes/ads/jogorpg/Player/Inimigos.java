@@ -1,11 +1,11 @@
 package ads.jogorpg.Player;
 public class Inimigos {
    private String Name,Type;
-   private int vida, stregth, Magic, Stamina, Level, Defense;
+   private int vida, stregth, Magic, Stamina, Level, Defense, critical;
 
     public Inimigos() {}
 
-    public Inimigos(String Name, String Type, int vida, int stregth, int Magic, int Stamina, int Level, int Defense) {
+    public Inimigos(String Name, String Type, int vida, int stregth, int Magic, int Stamina, int Level, int Defense, int critical) {
         this.Name = Name;
         this.Type = Type;
         this.vida = vida;
@@ -14,8 +14,18 @@ public class Inimigos {
         this.Stamina = Stamina;
         this.Level = Level;
         this.Defense = Defense;
+        this.critical = critical;
     }
 
+    public int getCritical() {
+        return critical;
+    }
+
+    public void setCritical(int critical) {
+        this.critical = critical;
+    }
+
+    
     public int getVida() {
         return vida;
     }
