@@ -59,4 +59,21 @@ public class Doc {
         
         return doc;
     }
+    
+    public Personagens DoctoPersonagens (Document doc){
+        Personagens P1 = new Personagens();
+        P1.setName((String) doc.get("Nome"));
+        P1.setClasse((String) doc.get("Class"));
+        P1.setLevel((int) doc.get("Nivel"));
+        P1.setVidaMax((int) doc.get("VidaMax"));
+        P1.setStaminaMax((int) doc.get("StaminaMax"));
+        P1.setStregth((int) doc.get("Stregth"));
+        P1.setMagic((int) doc.get("Magic"));
+        P1.setDefense((int) doc.get("Defesa"));
+        P1.setInimigosDerrotados((int) doc.get("InimigosDerrotados"));
+        P1.setDungeons((int) doc.get("Dungeons"));
+        P1.setCritical((int) doc.get("Critical"));
+        P1.setSex((String) doc.get("Sex"));
+        return P1;
+    }
 }

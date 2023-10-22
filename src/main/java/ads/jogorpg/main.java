@@ -10,6 +10,7 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 import java.util.List;
+import java.util.Random;
 public class main {
     public static void main(String[] args) {
         //Personagens p1 = new Personagens();
@@ -25,11 +26,10 @@ public class main {
         User u = new User();
         //u = doc.DocToUser(mongo.MongoGetDBcollection("Jogo", "LogedUser"));
         //System.out.println(u.getNickName());
-        u.setID(1);
-        DbSQL sql = new DbSQL();
-        List<Personagens> L1 = sql.sqlDbPersonagensSelect(u);
-        for (int i = 0; i < L1.size(); i++) {
-            System.out.println(L1.get(i));
+        Random gerador = new Random();
+        for (int i = 0; i < 100; i++) {
+            int Ataque = gerador.nextInt(3);
+            System.out.println(Ataque);
         }
         
             
