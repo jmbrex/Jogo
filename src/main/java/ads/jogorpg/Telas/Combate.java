@@ -9,23 +9,32 @@ import ads.jogorpg.DataBase.DbMongoDB;
 import ads.jogorpg.DataBase.Doc;
 import ads.jogorpg.Player.Inimigos;
 import ads.jogorpg.Player.Personagens;
-import com.mongodb.Mongo;
+
 
 /**
  *
  * @author João Marcelo
  */
 public class Combate extends javax.swing.JFrame {
-    Inimigos I1 = new Inimigos();
-        
+    DbMongoDB mongo = new DbMongoDB();
+    Doc doc = new Doc();
+    Inimigos I1 = doc.DocToInimigo(mongo.MongoGetDBcollection("Jogo", "Inimigos"));
+    Personagens P1 = doc.DoctoPersonagens(mongo.MongoGetDBcollection("Jogo", "SelectedPersonagem"));
+    
     
     /**
      * Creates new form Combate
      */
     public Combate() {
         initComponents();
-        I1.setVida(200);
-        I1.setDefense(0);
+        StaminePersonagem.setMaximum(P1.getStaminaMax());
+        P1.setStamina(P1.getStaminaMax());
+        StaminePersonagem.setValue(P1.getStamina());
+        VidaPersonagem.setMaximum(P1.getVidaMax());
+        P1.setVida(P1.getVidaMax());
+        VidaPersonagem.setValue(P1.getVida());
+        VidaInimigo.setMaximum(I1.getVida());
+        VidaInimigo.setValue(I1.getVida());
     }
 
     /**
@@ -37,80 +46,99 @@ public class Combate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        StaminePersonagem = new javax.swing.JProgressBar();
+        VidaInimigo = new javax.swing.JProgressBar();
+        VidaPersonagem = new javax.swing.JProgressBar();
+        Menu = new javax.swing.JButton();
+        Criar = new javax.swing.JButton();
+        Inimigo1 = new javax.swing.JLabel();
+        Inimigo = new javax.swing.JLabel();
+        Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Leve");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Stamina");
+        jLabel3.setToolTipText("");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Vida");
+        jLabel2.setToolTipText("");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Vida");
+        jLabel4.setToolTipText("");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 130, -1, -1));
+
+        StaminePersonagem.setMaximum(200);
+        getContentPane().add(StaminePersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 230, 30));
+
+        VidaInimigo.setMaximum(200);
+        getContentPane().add(VidaInimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 270, 30));
+
+        VidaPersonagem.setMaximum(200);
+        getContentPane().add(VidaPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 230, 30));
+
+        Menu.setBackground(new java.awt.Color(204, 204, 204));
+        Menu.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Menu.setForeground(new java.awt.Color(0, 0, 0));
+        Menu.setText("Ataque Leve");
+        Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                MenuActionPerformed(evt);
             }
         });
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 140, 40));
 
-        jButton3.setText("Pesado");
+        Criar.setBackground(new java.awt.Color(204, 204, 204));
+        Criar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Criar.setForeground(new java.awt.Color(0, 0, 0));
+        Criar.setText("Ataque Pesado");
+        Criar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CriarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 170, 40));
 
-        jProgressBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Inimigo1.setIcon(new javax.swing.ImageIcon("C:\\Users\\João Marcelo\\Downloads\\arthur-PhotoRoom.png-PhotoRoom.png")); // NOI18N
+        getContentPane().add(Inimigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, 180, 650, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(459, 459, 459)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(555, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(41, 41, 41)
-                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(973, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(130, 130, 130)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(446, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(200, 200, 200)
-                    .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(444, Short.MAX_VALUE)))
-        );
+        Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo.png"))); // NOI18N
+        getContentPane().add(Inimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 180, -1, -1));
+
+        Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/FundoDark.png"))); // NOI18N
+        getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
         // TODO add your handling code here:
-        
-        
-        Ataques AtqP = new Ataques();
-        DbMongoDB mongo = new DbMongoDB();
-        Doc doc = new Doc();
-        Personagens P1 = doc.DoctoPersonagens(mongo.MongoGetDBcollection("Jogo", "SelectedPersonagem"));
-        P1.setStamina(P1.getStaminaMax());
-        P1.setVida(P1.getVidaMax());
-        AtqP.AtaqueLeve(P1, I1);
-        System.out.println(I1.getVida());
-        jProgressBar1.setValue(I1.getVida());
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Ataques ataque = new Ataques();
+        ataque.AtaqueLeve(P1, I1);
+        VidaInimigo.setValue(I1.getVida());
+        StaminePersonagem.setValue(P1.getStamina());
+    }//GEN-LAST:event_MenuActionPerformed
+
+    private void CriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarActionPerformed
+        // TODO add your handling code here:
+        Ataques ataque = new Ataques();
+        ataque.AtaquePesado(P1, I1);
+        VidaInimigo.setValue(I1.getVida());
+        StaminePersonagem.setValue(P1.getStamina());
+
+    }//GEN-LAST:event_CriarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,6 +149,7 @@ public class Combate extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -145,13 +174,23 @@ public class Combate extends javax.swing.JFrame {
                 new Combate().setVisible(true);
                 
             }
+            
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JButton Criar;
+    private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel Inimigo;
+    private javax.swing.JLabel Inimigo1;
+    private javax.swing.JButton Menu;
+    private javax.swing.JProgressBar StaminePersonagem;
+    private javax.swing.JProgressBar VidaInimigo;
+    private javax.swing.JProgressBar VidaPersonagem;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

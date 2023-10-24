@@ -27,16 +27,16 @@ public class Ataques {
                 if(personagem.getCritical() > gerador.nextInt(100)){
                     x = (personagem.getStregth()*2) - inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida()-x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 20);
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO");
                 }else{
                     x = personagem.getStregth() - inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 20);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                personagem.setStamina(personagem.getStamina() - 5);
+                personagem.setStamina(personagem.getStamina() - 10);
             }
         }
         
@@ -45,16 +45,16 @@ public class Ataques {
                 if(personagem.getCritical() > gerador.nextInt(100)){
                     x = (personagem.getMagic()*2)- inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 20);
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO");
                 }else{
                     x = personagem.getMagic()- inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 20);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                personagem.setStamina(personagem.getStamina() - 5);
+                personagem.setStamina(personagem.getStamina() - 15);
             }
         }
         System.out.println(personagem.getClasse());
@@ -73,16 +73,16 @@ public class Ataques {
                 if(personagem.getCritical() > gerador.nextInt(100)){
                     x = ((personagem.getStregth()*2)*2) - inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida()-x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 40);
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO");
                 }else{
                     x = (personagem.getStregth()*2) - inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 40);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                personagem.setStamina(personagem.getStamina() - 5);
+                personagem.setStamina(personagem.getStamina() - 20);
             }
         }
         
@@ -91,16 +91,16 @@ public class Ataques {
                 if(personagem.getCritical() > gerador.nextInt(100)){
                     x = (personagem.getMagic()*2)- inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 40);
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO");
                 }else{
                     x = personagem.getMagic()- inimigo.getDefense();
                     inimigo.setVida(inimigo.getVida() - x);
-                    personagem.setStamina(personagem.getStamina() - 5);
+                    personagem.setStamina(personagem.getStamina() - 40);
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                personagem.setStamina(personagem.getStamina() - 5);
+                personagem.setStamina(personagem.getStamina() - 20);
             }
         }
         this.Confronto(personagem, inimigo);
