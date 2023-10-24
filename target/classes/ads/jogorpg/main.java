@@ -21,16 +21,14 @@ public class main {
         //B.AtaqueLeve(p1, p2);
         //System.out.println(p2.getVida());
         
-       // DbMongoDB mongo = new DbMongoDB();
-        //Doc doc = new Doc();
+        DbMongoDB mongo = new DbMongoDB();
+        Doc doc = new Doc();
         User u = new User();
         //u = doc.DocToUser(mongo.MongoGetDBcollection("Jogo", "LogedUser"));
         //System.out.println(u.getNickName());
         Random gerador = new Random();
-        for (int i = 0; i < 100; i++) {
-            int Ataque = gerador.nextInt(3);
-            System.out.println(Ataque);
-        }
+        Inimigos I1 = new Inimigos("I1", "", 200, 30, 30, 200, 0, 20, 25);
+        mongo.MongoInsertDB("Jogo", "Inimigos", doc.DocInimigo(I1));
         
             
     }
