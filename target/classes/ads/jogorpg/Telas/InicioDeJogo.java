@@ -213,6 +213,9 @@ public class InicioDeJogo extends javax.swing.JFrame {
 
     private void BT_JoarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BT_JoarActionPerformed
         // TODO add your handling code here:
+        Combate Tcombate = new Combate();
+        Tcombate.setVisible(true);
+        this. dispose();
     }//GEN-LAST:event_BT_JoarActionPerformed
 
     private void Menu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Menu1ActionPerformed

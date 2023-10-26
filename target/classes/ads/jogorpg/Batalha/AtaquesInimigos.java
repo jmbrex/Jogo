@@ -18,12 +18,13 @@ public class AtaquesInimigos {
     public void EscolhaDeAtaque(Personagens P1, Inimigos I1){
         
         Random gerador = new Random();
-        int Ataque = gerador.nextInt(2);
-        
-        if (Ataque == 0) {
+        int Ataque = gerador.nextInt(10);
+        System.out.println(Ataque);
+        JOptionPane.showMessageDialog(null, "Vez do Oponente!!");
+        if (Ataque <= 8) {
             this.AtaqueLeve(P1, I1);
             
-        } else if(Ataque == 1) {
+        } else if(Ataque >8) {
             if(I1.getStamina()<5){
                 this.AtaqueLeve(P1, I1);
             }else{
@@ -37,13 +38,15 @@ public class AtaquesInimigos {
     
     
     
-    public void Confronto(Personagens P1, Inimigos I1){
+    public boolean ResultatdoConfronto(Personagens P1, Inimigos I1){
         Ataques C1 = new Ataques();
         
         if(P1.getVida()<=1){
            
             JOptionPane.showMessageDialog(null, P1.getName()+" Foi derrotado");
+            return true;
         }
+        return false;
         
     }
     
@@ -60,7 +63,7 @@ public class AtaquesInimigos {
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO INIMIGO");
                 }else{
                     x = inimigo.getStregth() - personagem.getDefense();
-                    personagem.setVida(inimigo.getVida() - x);
+                    personagem.setVida(personagem.getVida() - x);
                     inimigo.setStamina(inimigo.getStamina() - 5);
                 }
             }else{
@@ -91,7 +94,8 @@ public class AtaquesInimigos {
             }
         }
         
-        this.Confronto(personagem, inimigo);
+        JOptionPane.showMessageDialog(null, inimigo.getName()+" ataque Leve!");
+        JOptionPane.showMessageDialog(null, "Dano Causado "+x);
         return x;
     }
     
@@ -139,7 +143,8 @@ public class AtaquesInimigos {
             }
         }
         
-        this.Confronto(personagem, inimigo);
+        JOptionPane.showMessageDialog(null, inimigo.getName()+" ataque Pesado!");
+        JOptionPane.showMessageDialog(null, "Dano Causado "+x);
         return x;
         
     }

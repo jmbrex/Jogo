@@ -5,10 +5,13 @@
 package ads.jogorpg.Telas;
 
 import ads.jogorpg.Batalha.Ataques;
+import ads.jogorpg.Batalha.AtaquesInimigos;
 import ads.jogorpg.DataBase.DbMongoDB;
 import ads.jogorpg.DataBase.Doc;
 import ads.jogorpg.Player.Inimigos;
 import ads.jogorpg.Player.Personagens;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -19,8 +22,9 @@ public class Combate extends javax.swing.JFrame {
     DbMongoDB mongo = new DbMongoDB();
     Doc doc = new Doc();
     Inimigos I1 = doc.DocToInimigo(mongo.MongoGetDBcollection("Jogo", "Inimigos"));
-    Personagens P1 = doc.DoctoPersonagens(mongo.MongoGetDBcollection("Jogo", "SelectedPersonagem"));
     
+    Personagens P1 = doc.DoctoPersonagens(mongo.MongoGetDBcollection("Jogo", "SelectedPersonagem"));
+      
     
     /**
      * Creates new form Combate
@@ -35,6 +39,10 @@ public class Combate extends javax.swing.JFrame {
         VidaPersonagem.setValue(P1.getVida());
         VidaInimigo.setMaximum(I1.getVida());
         VidaInimigo.setValue(I1.getVida());
+        NomePerso.setText(P1.getName());
+        
+        
+                
     }
 
     /**
@@ -46,6 +54,7 @@ public class Combate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        NomePerso = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -60,6 +69,12 @@ public class Combate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        NomePerso.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        NomePerso.setForeground(new java.awt.Color(255, 255, 255));
+        NomePerso.setText("A");
+        NomePerso.setToolTipText("");
+        getContentPane().add(NomePerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,17 +142,37 @@ public class Combate extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ataques ataque = new Ataques();
         ataque.AtaqueLeve(P1, I1);
-        VidaInimigo.setValue(I1.getVida());
         StaminePersonagem.setValue(P1.getStamina());
+        
+        AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
+        ataqueinimigo.EscolhaDeAtaque(P1, I1);
+        VidaInimigo.setValue(I1.getVida());
+        VidaPersonagem.setValue(P1.getVida());
+        
+        if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
+            TelaPrincipal tInicio = new TelaPrincipal();
+            tInicio.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_MenuActionPerformed
 
     private void CriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarActionPerformed
         // TODO add your handling code here:
         Ataques ataque = new Ataques();
         ataque.AtaquePesado(P1, I1);
-        VidaInimigo.setValue(I1.getVida());
         StaminePersonagem.setValue(P1.getStamina());
-
+        AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
+        ataqueinimigo.EscolhaDeAtaque(P1, I1);
+        VidaInimigo.setValue(I1.getVida());
+        VidaPersonagem.setValue(P1.getVida());
+        
+        
+        if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
+            TelaPrincipal tInicio = new TelaPrincipal();
+            tInicio.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_CriarActionPerformed
 
     /**
@@ -179,6 +214,8 @@ public class Combate extends javax.swing.JFrame {
         
         
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Criar;
@@ -186,6 +223,7 @@ public class Combate extends javax.swing.JFrame {
     private javax.swing.JLabel Inimigo;
     private javax.swing.JLabel Inimigo1;
     private javax.swing.JButton Menu;
+    private javax.swing.JLabel NomePerso;
     private javax.swing.JProgressBar StaminePersonagem;
     private javax.swing.JProgressBar VidaInimigo;
     private javax.swing.JProgressBar VidaPersonagem;

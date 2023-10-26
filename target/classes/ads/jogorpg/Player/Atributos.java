@@ -8,7 +8,7 @@ public class Atributos {
                 p1.setVidaMax(200);
                 p1.setStaminaMax(200);
                 p1.setLevel(0);
-                p1.setStregth(25);
+                p1.setStregth(35);
                 p1.setMagic(5);
                 p1.setCritical(10);
                 p1.setDefense(20);
@@ -21,7 +21,7 @@ public class Atributos {
                 p1.setStaminaMax(200);
                 p1.setLevel(0);
                 p1.setStregth(5);
-                p1.setMagic(25);
+                p1.setMagic(35);
                 p1.setCritical(15);
                 p1.setDefense(10);
                 p1.setInimigosDerrotados(0);
