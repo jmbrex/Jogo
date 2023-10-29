@@ -112,7 +112,7 @@ public class AtaquesInimigos {
                     JOptionPane.showMessageDialog(null, "ATAQUE CRITICO INIMIGO");
                 }else{
                     x = (inimigo.getStregth()*2) - personagem.getDefense();
-                    personagem.setVida(inimigo.getVida() - x);
+                    personagem.setVida(personagem.getVida() - x);
                     inimigo.setStamina(inimigo.getStamina() - 5);
                 }
             }else{
