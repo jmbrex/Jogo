@@ -31,6 +31,7 @@ public class Combate extends javax.swing.JFrame {
      */
     public Combate() {
         initComponents();
+        telaFim.setVisible(false);
         StaminePersonagem.setMaximum(P1.getStaminaMax());
         P1.setStamina(P1.getStaminaMax());
         StaminePersonagem.setValue(P1.getStamina());
@@ -42,7 +43,7 @@ public class Combate extends javax.swing.JFrame {
         NomePerso.setText(P1.getName());
         
         
-                
+       
     }
 
     /**
@@ -54,6 +55,8 @@ public class Combate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        telaFim = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         NomePerso = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -69,6 +72,18 @@ public class Combate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        telaFim.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        telaFim.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+
+        getContentPane().add(telaFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 300, 310));
 
         NomePerso.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         NomePerso.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,7 +144,7 @@ public class Combate extends javax.swing.JFrame {
         getContentPane().add(Inimigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, 180, 650, -1));
 
         Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo.png"))); // NOI18N
-        getContentPane().add(Inimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 180, -1, -1));
+        getContentPane().add(Inimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, -1, 500));
 
         Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/FundoDark.png"))); // NOI18N
         getContentPane().add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -142,17 +157,17 @@ public class Combate extends javax.swing.JFrame {
         // TODO add your handling code here:
         Ataques ataque = new Ataques();
         ataque.AtaqueLeve(P1, I1);
-        StaminePersonagem.setValue(P1.getStamina());
+        
         
         AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
         ataqueinimigo.EscolhaDeAtaque(P1, I1);
+        
+        StaminePersonagem.setValue(P1.getStamina());
         VidaInimigo.setValue(I1.getVida());
         VidaPersonagem.setValue(P1.getVida());
         
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
-            TelaPrincipal tInicio = new TelaPrincipal();
-            tInicio.setVisible(true);
-            this.dispose();
+            telaFim.setVisible(true);
         }
         
     }//GEN-LAST:event_MenuActionPerformed
@@ -169,11 +184,16 @@ public class Combate extends javax.swing.JFrame {
         
         
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
+            telaFim.setVisible(true);
+        }
+    }//GEN-LAST:event_CriarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
             TelaPrincipal tInicio = new TelaPrincipal();
             tInicio.setVisible(true);
             this.dispose();
-        }
-    }//GEN-LAST:event_CriarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,8 +247,10 @@ public class Combate extends javax.swing.JFrame {
     private javax.swing.JProgressBar StaminePersonagem;
     private javax.swing.JProgressBar VidaInimigo;
     private javax.swing.JProgressBar VidaPersonagem;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel telaFim;
     // End of variables declaration//GEN-END:variables
 }
