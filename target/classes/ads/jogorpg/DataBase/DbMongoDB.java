@@ -52,19 +52,14 @@ public class DbMongoDB {
         MongoDatabase db = mongo.getDatabase(dataBase);
         MongoCollection<Document> docs = db.getCollection(DataBaseCollection);
         for (Document doc : docs.find()) {
+            
             if(VarSearchType.equals("String")){
                 if(doc.get(FilterAtributo).equals(FilterAtributoValue)){
                     return doc;
-                }else{
-                    System.out.println("Não encontrado");
-                    return null;
                 }
             }else{
                 if(doc.get(FilterAtributo).equals(Integer.parseInt(FilterAtributoValue))){
                     return doc;
-                }else{
-                    System.out.println("Não encontrado");
-                    return null;
                 }
             }
             

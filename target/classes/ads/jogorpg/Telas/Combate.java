@@ -7,11 +7,16 @@ package ads.jogorpg.Telas;
 import ads.jogorpg.Batalha.Ataques;
 import ads.jogorpg.Batalha.AtaquesInimigos;
 import ads.jogorpg.DataBase.DbMongoDB;
+import ads.jogorpg.DataBase.DbSQL;
 import ads.jogorpg.DataBase.Doc;
 import ads.jogorpg.Player.Inimigos;
 import ads.jogorpg.Player.Personagens;
+import java.awt.Color;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 /**
@@ -19,19 +24,38 @@ import java.util.logging.Logger;
  * @author João Marcelo
  */
 public class Combate extends javax.swing.JFrame {
+    int fase = 0;
+    int minimoParaAtaquePesado= 0;
     DbMongoDB mongo = new DbMongoDB();
+    DbSQL SQL = new DbSQL();
     Doc doc = new Doc();
-    Inimigos I1 = doc.DocToInimigo(mongo.MongoGetDBcollection("Jogo", "Inimigos"));
-    
+    //Inimigos I1 = doc.DocToInimigo(mongo.MongoGetDBcollection("Jogo", "Inimigos"));
+    Inimigos I1 = doc.DocToInimigo(mongo.MongoGetDB("Jogo", "Inimigos", "String", "Nome", "I3"));
     Personagens P1 = doc.DoctoPersonagens(mongo.MongoGetDBcollection("Jogo", "SelectedPersonagem"));
-      
+    
     
     /**
      * Creates new form Combate
      */
     public Combate() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Combate.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Combate.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Combate.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Combate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         initComponents();
+        AtaquePesado.setEnabled(false);
+        
         telaFim.setVisible(false);
+        telaFim.setBackground(new Color(0,0,0,0));
+        
         StaminePersonagem.setMaximum(P1.getStaminaMax());
         P1.setStamina(P1.getStaminaMax());
         StaminePersonagem.setValue(P1.getStamina());
@@ -42,8 +66,13 @@ public class Combate extends javax.swing.JFrame {
         VidaInimigo.setValue(I1.getVida());
         NomePerso.setText(P1.getName());
         
-        
-       
+        if(P1.getClasse().equals("Guerreiro")){
+            Personagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/arthur-PhotoRoom.png-PhotoRoom.png")));
+        }else if(P1.getClasse().equals("Mago")){
+            Personagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/mago.png")));
+        }else{
+            Personagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/arthur-PhotoRoom.png-PhotoRoom.png")));
+        }
     }
 
     /**
@@ -56,7 +85,9 @@ public class Combate extends javax.swing.JFrame {
     private void initComponents() {
 
         telaFim = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        fundoFim = new javax.swing.JLabel();
         NomePerso = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -64,9 +95,10 @@ public class Combate extends javax.swing.JFrame {
         StaminePersonagem = new javax.swing.JProgressBar();
         VidaInimigo = new javax.swing.JProgressBar();
         VidaPersonagem = new javax.swing.JProgressBar();
-        Menu = new javax.swing.JButton();
-        Criar = new javax.swing.JButton();
-        Inimigo1 = new javax.swing.JLabel();
+        AtaquePesado1 = new javax.swing.JButton();
+        AtaqueLeve = new javax.swing.JButton();
+        AtaquePesado = new javax.swing.JButton();
+        Personagem = new javax.swing.JLabel();
         Inimigo = new javax.swing.JLabel();
         Fundo = new javax.swing.JLabel();
 
@@ -75,15 +107,33 @@ public class Combate extends javax.swing.JFrame {
 
         telaFim.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Proximo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        telaFim.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
+        jButton1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setText("Sair");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        telaFim.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, -1, -1));
+        telaFim.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
 
-        getContentPane().add(telaFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 300, 310));
+        fundoFim.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fundoFim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/moldurahori-PhotoRoom.png-PhotoRoom.png"))); // NOI18N
+        telaFim.add(fundoFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 240));
+
+        getContentPane().add(telaFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 460, 240));
 
         NomePerso.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         NomePerso.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,36 +162,52 @@ public class Combate extends javax.swing.JFrame {
         StaminePersonagem.setMaximum(200);
         getContentPane().add(StaminePersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 230, 30));
 
+        VidaInimigo.setBackground(new java.awt.Color(0, 0, 0));
+        VidaInimigo.setForeground(new java.awt.Color(51, 255, 51));
         VidaInimigo.setMaximum(200);
         getContentPane().add(VidaInimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 130, 270, 30));
 
+        VidaPersonagem.setBackground(new java.awt.Color(0, 0, 0));
+        VidaPersonagem.setForeground(new java.awt.Color(51, 255, 51));
         VidaPersonagem.setMaximum(200);
         getContentPane().add(VidaPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 230, 30));
 
-        Menu.setBackground(new java.awt.Color(204, 204, 204));
-        Menu.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        Menu.setForeground(new java.awt.Color(0, 0, 0));
-        Menu.setText("Ataque Leve");
-        Menu.addActionListener(new java.awt.event.ActionListener() {
+        AtaquePesado1.setBackground(new java.awt.Color(204, 204, 204));
+        AtaquePesado1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        AtaquePesado1.setForeground(new java.awt.Color(0, 0, 0));
+        AtaquePesado1.setText("Poção Estamina");
+        AtaquePesado1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuActionPerformed(evt);
+                AtaquePesado1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 140, 40));
+        getContentPane().add(AtaquePesado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 650, 170, 40));
 
-        Criar.setBackground(new java.awt.Color(204, 204, 204));
-        Criar.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        Criar.setForeground(new java.awt.Color(0, 0, 0));
-        Criar.setText("Ataque Pesado");
-        Criar.addActionListener(new java.awt.event.ActionListener() {
+        AtaqueLeve.setBackground(new java.awt.Color(204, 204, 204));
+        AtaqueLeve.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        AtaqueLeve.setForeground(new java.awt.Color(0, 0, 0));
+        AtaqueLeve.setText("Ataque Leve");
+        AtaqueLeve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CriarActionPerformed(evt);
+                AtaqueLeveActionPerformed(evt);
             }
         });
-        getContentPane().add(Criar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 170, 40));
+        getContentPane().add(AtaqueLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 140, 40));
 
-        Inimigo1.setIcon(new javax.swing.ImageIcon("C:\\Users\\João Marcelo\\Downloads\\arthur-PhotoRoom.png-PhotoRoom.png")); // NOI18N
-        getContentPane().add(Inimigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, 180, 650, -1));
+        AtaquePesado.setBackground(new java.awt.Color(204, 204, 204));
+        AtaquePesado.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        AtaquePesado.setForeground(new java.awt.Color(0, 0, 0));
+        AtaquePesado.setText("Ataque Pesado");
+        AtaquePesado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtaquePesadoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(AtaquePesado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 170, 40));
+
+        Personagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Personagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/arthur-PhotoRoom.png-PhotoRoom.png"))); // NOI18N
+        getContentPane().add(Personagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 180, 650, -1));
 
         Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo.png"))); // NOI18N
         getContentPane().add(Inimigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 170, -1, 500));
@@ -153,40 +219,58 @@ public class Combate extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+    private void AtaqueLeveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtaqueLeveActionPerformed
         // TODO add your handling code here:
+        //Vida antes de atacar
+        int VatualI = I1.getVida();
+        int VatualP = P1.getVida();
+        //Ralizando o ataque do Personagem
         Ataques ataque = new Ataques();
         ataque.AtaqueLeve(P1, I1);
-        
-        
+        //Realizando o ataque do inimigo
         AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
         ataqueinimigo.EscolhaDeAtaque(P1, I1);
-        
+        //atualizando barras de vida e stamina
+        teste ProgressBar = new teste();
+        ProgressBar.a(VidaInimigo, VatualI, I1.getVida());
+        ProgressBar.a(VidaPersonagem, VatualP, P1.getVida());
         StaminePersonagem.setValue(P1.getStamina());
-        VidaInimigo.setValue(I1.getVida());
-        VidaPersonagem.setValue(P1.getVida());
-        
+        //Carregando ataque pesado
+        minimoParaAtaquePesado = minimoParaAtaquePesado+1;
+        System.out.println(minimoParaAtaquePesado);
+        if(minimoParaAtaquePesado>=5){
+            AtaquePesado.setEnabled(true);
+        }
+        //Verificando se o persdonagem ou inimigo foi derrotado
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
             telaFim.setVisible(true);
         }
-        
-    }//GEN-LAST:event_MenuActionPerformed
+    }//GEN-LAST:event_AtaqueLeveActionPerformed
 
-    private void CriarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CriarActionPerformed
+    private void AtaquePesadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtaquePesadoActionPerformed
         // TODO add your handling code here:
+        //Vida antes de atacar
+        int VatualI = I1.getVida();
+        int VatualP = P1.getVida();
+        //Ralizando o ataque do Personagem
         Ataques ataque = new Ataques();
         ataque.AtaquePesado(P1, I1);
-        StaminePersonagem.setValue(P1.getStamina());
+        //Ralizando o ataque do Inimigo
         AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
         ataqueinimigo.EscolhaDeAtaque(P1, I1);
-        VidaInimigo.setValue(I1.getVida());
-        VidaPersonagem.setValue(P1.getVida());
-        
-        
+        //atualizando barras de vida e stamina
+        teste ProgressBar = new teste();
+        ProgressBar.a(VidaInimigo, VatualI, I1.getVida());
+        ProgressBar.a(VidaPersonagem, VatualP, P1.getVida());
+        StaminePersonagem.setValue(P1.getStamina());
+        //reset ataque pesado
+        minimoParaAtaquePesado=0;
+        AtaquePesado.setEnabled(false);
+        //verificando se o personagem ou inimigo foi derrotado
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
             telaFim.setVisible(true);
         }
-    }//GEN-LAST:event_CriarActionPerformed
+    }//GEN-LAST:event_AtaquePesadoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -194,6 +278,29 @@ public class Combate extends javax.swing.JFrame {
             tInicio.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (fase==0) {
+            I1 = doc.DocToInimigo(mongo.MongoGetDB("Jogo", "Inimigos", "String", "Nome", "I2"));
+            VidaInimigo.setValue(I1.getVida());
+            Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo2.png")));
+            telaFim.setVisible(false);
+            fase=1;
+        }else{
+           fase=2;
+           I1 = doc.DocToInimigo(mongo.MongoGetDB("Jogo", "Inimigos", "String", "Nome", "I1"));
+           VidaInimigo.setValue(I1.getVida());
+           Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo3.png")));
+           telaFim.setVisible(false);
+        }
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void AtaquePesado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtaquePesado1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AtaquePesado1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,16 +345,19 @@ public class Combate extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Criar;
+    private javax.swing.JButton AtaqueLeve;
+    private javax.swing.JButton AtaquePesado;
+    private javax.swing.JButton AtaquePesado1;
     private javax.swing.JLabel Fundo;
     private javax.swing.JLabel Inimigo;
-    private javax.swing.JLabel Inimigo1;
-    private javax.swing.JButton Menu;
     private javax.swing.JLabel NomePerso;
+    private javax.swing.JLabel Personagem;
     private javax.swing.JProgressBar StaminePersonagem;
     private javax.swing.JProgressBar VidaInimigo;
     private javax.swing.JProgressBar VidaPersonagem;
+    private javax.swing.JLabel fundoFim;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
