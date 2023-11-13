@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -85,6 +86,7 @@ public class Combate extends javax.swing.JFrame {
     private void initComponents() {
 
         telaFim = new javax.swing.JPanel();
+        msgFinal = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         fundoFim = new javax.swing.JLabel();
@@ -95,7 +97,8 @@ public class Combate extends javax.swing.JFrame {
         StaminePersonagem = new javax.swing.JProgressBar();
         VidaInimigo = new javax.swing.JProgressBar();
         VidaPersonagem = new javax.swing.JProgressBar();
-        AtaquePesado1 = new javax.swing.JButton();
+        pocaoStamina1 = new javax.swing.JButton();
+        pocaoStamina = new javax.swing.JButton();
         AtaqueLeve = new javax.swing.JButton();
         AtaquePesado = new javax.swing.JButton();
         Personagem = new javax.swing.JLabel();
@@ -106,6 +109,12 @@ public class Combate extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         telaFim.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        msgFinal.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        msgFinal.setForeground(new java.awt.Color(255, 255, 255));
+        msgFinal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        msgFinal.setText("Continuar ou voltar ao menu?");
+        telaFim.add(msgFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 70, -1, -1));
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -145,7 +154,7 @@ public class Combate extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Stamina");
         jLabel3.setToolTipText("");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 580, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 620, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,7 +169,7 @@ public class Combate extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 130, -1, -1));
 
         StaminePersonagem.setMaximum(200);
-        getContentPane().add(StaminePersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 230, 30));
+        getContentPane().add(StaminePersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 650, 230, 30));
 
         VidaInimigo.setBackground(new java.awt.Color(0, 0, 0));
         VidaInimigo.setForeground(new java.awt.Color(51, 255, 51));
@@ -172,16 +181,27 @@ public class Combate extends javax.swing.JFrame {
         VidaPersonagem.setMaximum(200);
         getContentPane().add(VidaPersonagem, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 230, 30));
 
-        AtaquePesado1.setBackground(new java.awt.Color(204, 204, 204));
-        AtaquePesado1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        AtaquePesado1.setForeground(new java.awt.Color(0, 0, 0));
-        AtaquePesado1.setText("Poção Estamina");
-        AtaquePesado1.addActionListener(new java.awt.event.ActionListener() {
+        pocaoStamina1.setBackground(new java.awt.Color(204, 204, 204));
+        pocaoStamina1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        pocaoStamina1.setForeground(new java.awt.Color(0, 0, 0));
+        pocaoStamina1.setText("Poção vida");
+        pocaoStamina1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtaquePesado1ActionPerformed(evt);
+                pocaoStamina1ActionPerformed(evt);
             }
         });
-        getContentPane().add(AtaquePesado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 650, 170, 40));
+        getContentPane().add(pocaoStamina1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 650, 170, 40));
+
+        pocaoStamina.setBackground(new java.awt.Color(204, 204, 204));
+        pocaoStamina.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        pocaoStamina.setForeground(new java.awt.Color(0, 0, 0));
+        pocaoStamina.setText("Poção Estamina");
+        pocaoStamina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pocaoStaminaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(pocaoStamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 650, -1, 40));
 
         AtaqueLeve.setBackground(new java.awt.Color(204, 204, 204));
         AtaqueLeve.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -192,7 +212,7 @@ public class Combate extends javax.swing.JFrame {
                 AtaqueLeveActionPerformed(evt);
             }
         });
-        getContentPane().add(AtaqueLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 650, 140, 40));
+        getContentPane().add(AtaqueLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 160, 40));
 
         AtaquePesado.setBackground(new java.awt.Color(204, 204, 204));
         AtaquePesado.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
@@ -203,7 +223,7 @@ public class Combate extends javax.swing.JFrame {
                 AtaquePesadoActionPerformed(evt);
             }
         });
-        getContentPane().add(AtaquePesado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 650, 170, 40));
+        getContentPane().add(AtaquePesado, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 600, 170, 40));
 
         Personagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Personagem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/arthur-PhotoRoom.png-PhotoRoom.png"))); // NOI18N
@@ -231,7 +251,7 @@ public class Combate extends javax.swing.JFrame {
         AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
         ataqueinimigo.EscolhaDeAtaque(P1, I1);
         //atualizando barras de vida e stamina
-        teste ProgressBar = new teste();
+        bar ProgressBar = new bar();
         ProgressBar.a(VidaInimigo, VatualI, I1.getVida());
         ProgressBar.a(VidaPersonagem, VatualP, P1.getVida());
         StaminePersonagem.setValue(P1.getStamina());
@@ -244,6 +264,10 @@ public class Combate extends javax.swing.JFrame {
         //Verificando se o persdonagem ou inimigo foi derrotado
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
             telaFim.setVisible(true);
+            if(fase==2){
+                msgFinal.setText("Fim de jogo");
+                jButton2.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_AtaqueLeveActionPerformed
 
@@ -259,7 +283,7 @@ public class Combate extends javax.swing.JFrame {
         AtaquesInimigos ataqueinimigo = new AtaquesInimigos();
         ataqueinimigo.EscolhaDeAtaque(P1, I1);
         //atualizando barras de vida e stamina
-        teste ProgressBar = new teste();
+        bar ProgressBar = new bar();
         ProgressBar.a(VidaInimigo, VatualI, I1.getVida());
         ProgressBar.a(VidaPersonagem, VatualP, P1.getVida());
         StaminePersonagem.setValue(P1.getStamina());
@@ -269,6 +293,10 @@ public class Combate extends javax.swing.JFrame {
         //verificando se o personagem ou inimigo foi derrotado
         if(ataque.ResultadoConfronto(P1, I1) || ataqueinimigo.ResultatdoConfronto(P1, I1)){
             telaFim.setVisible(true);
+            if(fase==2){
+                msgFinal.setText("Fim de jogo");
+                jButton2.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_AtaquePesadoActionPerformed
 
@@ -286,6 +314,7 @@ public class Combate extends javax.swing.JFrame {
             VidaInimigo.setValue(I1.getVida());
             Inimigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/Demo2.png")));
             telaFim.setVisible(false);
+            
             fase=1;
         }else{
            fase=2;
@@ -298,9 +327,31 @@ public class Combate extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void AtaquePesado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtaquePesado1ActionPerformed
+    private void pocaoStaminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pocaoStaminaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AtaquePesado1ActionPerformed
+        if(P1.getStamina()+40<P1.getStaminaMax()){
+            P1.setStamina(P1.getStamina()+40);
+            StaminePersonagem.setValue(P1.getStamina());
+        }else{
+            JOptionPane.showMessageDialog(null, "Stamina muito alta");
+        }
+        
+    }//GEN-LAST:event_pocaoStaminaActionPerformed
+
+    private void pocaoStamina1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pocaoStamina1ActionPerformed
+        // TODO add your handling code here:
+        int VatualP = P1.getVida();
+        
+        if(P1.getVida()+40<P1.getVidaMax()){
+            P1.setVida(P1.getVida()+40);
+            bar ProgressBar = new bar();
+            ProgressBar.b(VidaPersonagem, VatualP, P1.getVida());
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Vida muito alta");
+        }
+        
+    }//GEN-LAST:event_pocaoStamina1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,7 +398,6 @@ public class Combate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtaqueLeve;
     private javax.swing.JButton AtaquePesado;
-    private javax.swing.JButton AtaquePesado1;
     private javax.swing.JLabel Fundo;
     private javax.swing.JLabel Inimigo;
     private javax.swing.JLabel NomePerso;
@@ -361,6 +411,9 @@ public class Combate extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel msgFinal;
+    private javax.swing.JButton pocaoStamina;
+    private javax.swing.JButton pocaoStamina1;
     private javax.swing.JPanel telaFim;
     // End of variables declaration//GEN-END:variables
 }
