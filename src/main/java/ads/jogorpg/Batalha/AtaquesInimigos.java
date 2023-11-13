@@ -68,7 +68,7 @@ public class AtaquesInimigos {
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                x=5;
+                x=10;
                 personagem.setVida(personagem.getVida()-x);
                 inimigo.setStamina(inimigo.getStamina() - 5);
             }
@@ -88,7 +88,7 @@ public class AtaquesInimigos {
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                x=5;
+                x=10;
                 personagem.setVida(personagem.getVida()-x);
                 inimigo.setStamina(inimigo.getStamina() - 5);
             }
@@ -117,7 +117,7 @@ public class AtaquesInimigos {
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                x=5;
+                x=10;
                 personagem.setVida(personagem.getVida()-x);
                 inimigo.setStamina(inimigo.getStamina() - 5);
             }
@@ -137,7 +137,7 @@ public class AtaquesInimigos {
                 }
             }else{
                 JOptionPane.showMessageDialog(null, inimigo.getName()+": Ataque muito frco");
-                x=5;
+                x=10;
                 personagem.setVida(personagem.getVida()-x);
                 inimigo.setStamina(inimigo.getStamina() - 5);
             }
