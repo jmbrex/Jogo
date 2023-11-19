@@ -76,10 +76,10 @@ public class login extends javax.swing.JFrame {
         });
         getContentPane().add(BT_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 370, 120, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("..\\moldurahori-PhotoRoom.png-PhotoRoom.png"));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/moldurahori-PhotoRoom.png-PhotoRoom.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(325, 200, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("..\\fundo.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ads/jogorpg/icon/fundo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
