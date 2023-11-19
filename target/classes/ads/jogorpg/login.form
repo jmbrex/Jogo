@@ -105,8 +105,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(&quot;..\\moldurahori-PhotoRoom.png-PhotoRoom.png&quot;)" type="code"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ads/jogorpg/icon/moldurahori-PhotoRoom.png-PhotoRoom.png"/>
         </Property>
       </Properties>
       <Constraints>
@@ -117,8 +117,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.ImageIcon(&quot;..\\fundo.png&quot;)" type="code"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/ads/jogorpg/icon/fundo.png"/>
         </Property>
       </Properties>
       <Constraints>
