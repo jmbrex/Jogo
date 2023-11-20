@@ -35,6 +35,8 @@ public class InicioDeJogo extends javax.swing.JFrame {
         for (int i = 0; i < ListaPersonagens.size(); i++) {
             SelectPersonagem.addItem(ListaPersonagens.get(i).getName() +" -- "+ ListaPersonagens.get(i).getClasse());
         }
+        
+        BT_Joar.setEnabled(false);
     }
 
     /**
@@ -231,6 +233,8 @@ public class InicioDeJogo extends javax.swing.JFrame {
         List <Personagens> ListaPersonagens = SQL.sqlDbPersonagensSelect(U1);
         
         mongo.MongoInsertDB("Jogo", "SelectedPersonagem", D.DocPersonagem(ListaPersonagens.get(SelectPersonagem.getSelectedIndex()-1)));
+        
+        BT_Joar.setEnabled(true);
     }//GEN-LAST:event_Menu1ActionPerformed
 
     private void SelectPersonagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectPersonagemActionPerformed
